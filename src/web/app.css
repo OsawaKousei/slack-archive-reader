@@ -1,3 +1,151 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.app-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.app-header {
+  background-color: #3f0e40; /* Slack-ish purple */
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 0 0 10px 0;
+}
+
+.app-header button {
+  background-color: #ecb22e; /* Slack-ish yellow */
+  color: #3f0e40;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.app-header button:hover {
+  background-color: #d9a01a;
+}
+.app-header p {
+  font-size: 0.9em;
+  margin-top: 10px;
+}
+
+.channel-section,
+.date-range-section,
+.messages-section {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.channel-section h2,
+.date-range-section h2,
+.messages-section h2 {
+  margin-top: 0;
+  color: #3f0e40;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+select,
+input[type="date"],
+.date-range-section button {
+  padding: 8px;
+  margin: 5px 0 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+.date-range-section div {
+  margin-bottom: 10px;
+}
+.date-range-section label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+.date-range-section button {
+  background-color: #2eb67d; /* Slack-ish green */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.date-range-section button:hover {
+  background-color: #1f9d63;
+}
+
+.messages-list {
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.message-item {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+}
+.message-item:last-child {
+  border-bottom: none;
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.message-header strong {
+  margin-right: 8px;
+  color: #1d1c1d;
+}
+
+.timestamp {
+  font-size: 0.8em;
+  color: #616061;
+}
+
+.message-text {
+  line-height: 1.5;
+  word-wrap: break-word; /* 長い単語やURLを折り返す */
+  white-space: pre-wrap; /* 空白や改行を保持しつつ折り返す */
+}
+
+.error-message {
+  color: red;
+  background-color: #ffebee;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+/* 既存のスタイルとの互換性を保つ */
 .container {
   font-family: sans-serif;
   text-align: center;
