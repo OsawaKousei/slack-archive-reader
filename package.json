@@ -1,8 +1,8 @@
 {
   "name": "slack-archive-reader",
   "version": "1.0.0",
-  "description": "",
-  "license": "ISC",
+  "description": "Slack のアーカイブをオフラインで閲覧するデスクトップアプリ",
+  "license": "MIT",
   "author": "",
   "electronmon": {
     "patterns": [
@@ -15,7 +15,8 @@
     "dev": "rimraf dist && run-p dev:webpack dev:electron",
     "dev:webpack": "cross-env NODE_ENV=\"development\" webpack --progress",
     "dev:electron": "wait-on ./dist/index.html ./dist/main.js && electronmon .",
-    "build": "cross-env NODE_ENV=\"production\" webpack --progress"
+    "build": "cross-env NODE_ENV=\"production\" webpack --progress",
+    "dist": "electron-builder"
   },
   "devDependencies": {
     "@types/node": "^22.15.19",
@@ -24,6 +25,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "electron": "^36.2.1",
+    "electron-builder": "^26.0.12",
     "electronmon": "^2.0.3",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",
@@ -39,5 +41,22 @@
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
+  },
+  "build": { 
+    "appId": "com.n622.slack-archive-reader",
+    "productName": "slack-archive-reader", 
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json",
+      "build/**/*",
+      "!**/*.map"
+    ],
+    "win": { 
+      "target": "nsis", 
+      "icon": "build/app_icon.ico" 
+    }
   }
 }

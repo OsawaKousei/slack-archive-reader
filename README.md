@@ -55,24 +55,18 @@
 2. プロジェクトのルートディレクトリで依存関係をインストールします:
    ```bash
    npm install
-   # または
-   yarn install
    ```
 
 ### 開発モードでの実行
 
 ```bash
-npm start
-# または
-yarn start
+npm run dev
 ```
 
 ### ビルド
 
 ```bash
 npm run build
-# または
-yarn build
 ```
 
 ## 注意点
