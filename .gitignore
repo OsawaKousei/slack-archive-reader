@@ -6,3 +6,8 @@ node_modules/
 
 # build
 dist/
+release/
+build/
+
+# data
+data/
