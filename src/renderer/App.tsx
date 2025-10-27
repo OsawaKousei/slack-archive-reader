@@ -16,6 +16,8 @@ export const App = () => {
   const [endDate, setEndDate] = useState<string>("");
   const [messages, setMessages] = useState<SlackMessage[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [filteredMessages, setFilteredMessages] = useState<SlackMessage[]>([]);
 
   const handleDirectorySelect = async () => {
     setError(null);
@@ -104,6 +106,37 @@ export const App = () => {
     return date.toLocaleString();
   };
 
+  // 検索機能
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredMessages(messages);
+    } else {
+      const query = searchQuery.toLowerCase();
+      const filtered = messages.filter((msg) => {
+        const text = msg.text?.toLowerCase() || "";
+        const userName = (
+          msg.user_profile?.display_name ||
+          msg.user_profile?.real_name ||
+          msg.user ||
+          ""
+        ).toLowerCase();
+        return text.includes(query) || userName.includes(query);
+      });
+      setFilteredMessages(filtered);
+    }
+  }, [searchQuery, messages]);
+
+  // テキストをハイライトする関数
+  const highlightText = (text: string, query: string) => {
+    if (!query.trim()) {
+      return text.replace(/\n/g, "<br />");
+    }
+    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+    return text
+      .replace(regex, '<mark>$1</mark>')
+      .replace(/\n/g, "<br />");
+  };
+
   return (
     <div className="app-container">
       <header className="app-header">
@@ -168,8 +201,22 @@ export const App = () => {
       {messages.length > 0 && (
         <section className="messages-section">
           <h2>メッセージ</h2>
+          <div className="search-box">
+            <input
+              type="text"
+              placeholder="メッセージを検索..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
+            {searchQuery && (
+              <span className="search-results-count">
+                {filteredMessages.length} / {messages.length} 件
+              </span>
+            )}
+          </div>
           <div className="messages-list">
-            {messages.map((msg) => (
+            {filteredMessages.map((msg) => (
               <div key={msg.ts} className="message-item">
                 <div className="message-header">
                   <img
@@ -187,7 +234,7 @@ export const App = () => {
                 <div
                   className="message-text"
                   dangerouslySetInnerHTML={{
-                    __html: msg.text?.replace(/\n/g, "<br />") || "",
+                    __html: highlightText(msg.text || "", searchQuery),
                   }}
                 />
                 {/* TODO: ファイルや添付ファイルの表示 */}

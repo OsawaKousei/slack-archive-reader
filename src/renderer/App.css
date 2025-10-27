@@ -63,6 +63,37 @@ body {
   margin-bottom: 15px;
 }
 
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #2eb67d;
+}
+
+.search-results-count {
+  font-size: 0.9em;
+  color: #616061;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
 select,
 input[type="date"],
 .date-range-section button {
@@ -134,6 +165,13 @@ input[type="date"],
   line-height: 1.5;
   word-wrap: break-word; /* 長い単語やURLを折り返す */
   white-space: pre-wrap; /* 空白や改行を保持しつつ折り返す */
+}
+
+mark {
+  background-color: #ffeb3b;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-weight: bold;
 }
 
 .error-message {
