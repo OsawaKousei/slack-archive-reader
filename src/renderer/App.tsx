@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import type { SlackMessage } from "../renderer";
+import type { SlackMessage } from "../shared/types";
 
 export const App = () => {
   const [selectedDirectory, setSelectedDirectory] = useState<string | null>(
